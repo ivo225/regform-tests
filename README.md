@@ -11,10 +11,6 @@ This repository contains an automated UI test suite for a simple registration fo
 - [Running Tests](#running-tests)
 - [Testing Approach](#testing-approach)
 - [UI Test Matrix](#ui-test-matrix)
-- [Debugging & Reporting](#debugging--reporting)
-- [Observations & Suggestions](#observations--suggestions)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Project Overview
 
@@ -125,12 +121,4 @@ npx playwright show-report
 | TC6b | Password missing digit        | Inline "must contain at least one digit" error |
 | TC7  | Boundary values (6, 20, 25 chars) | No errors at exact limits; errors just outside them |
 
-## Debugging & Reporting
 
-- Screenshots on failure (only-on-failure) and at key steps.
-- Traces on retry (on-first-retry) to replay browser events.
-- HTML reports: located under playwright-report/ for a visual dashboard.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
