@@ -101,10 +101,13 @@ npx playwright show-report
 
 ## Testing Approach
 
-- Playwright + TypeScript: unified framework for UI automation, with type safety.
-- Page Object Model (POM): encapsulate selectors and actions within RegistrationPage.ts alongside tests.
-- Data-driven & boundary checks: isolate each validation rule and its edge cases.
-- Reusability: common helpers for navigation, filling, and assertions.
+- **Playwright + TypeScript**: Playwright was chosen as I believe currently it is the most popular way to write automated tests and decided to give it a try.
+
+- **Combined Test and Page Interaction Design**: I've managed to combine all test cases into a single file.
+
+( few notes, I've tried to  use the latest trends and what was suggested in the Playwright documentation. Also I wanted to mention that for a bit of the code I used AI to help me run and troubleshoot the code )
+
+- **Screenshot Capture**: Screenshots are taken at key points in the test flow to provide visual evidence of test execution and to assist in debugging.
 
 ## UI Test Matrix
 
