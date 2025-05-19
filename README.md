@@ -73,9 +73,7 @@ npx tsc --noEmit
 ```
 ├─ tests/
 │   └─ ui/
-│       ├─ pages/
-│       │   └─ RegistrationPage.ts      # POM for UI interactions
-│       └─ registration.spec.ts         # UI test specs
+│       └─ RegistrationPage.ts          # Combined UI tests and page interactions
 ├─ .eslintrc.js                         # ESLint rules
 ├─ .prettierrc                          # Prettier rules
 ├─ package.json
@@ -104,7 +102,7 @@ npx playwright show-report
 ## Testing Approach
 
 - Playwright + TypeScript: unified framework for UI automation, with type safety.
-- Page Object Model (POM): encapsulate selectors and actions in RegistrationPage.ts.
+- Page Object Model (POM): encapsulate selectors and actions within RegistrationPage.ts alongside tests.
 - Data-driven & boundary checks: isolate each validation rule and its edge cases.
 - Reusability: common helpers for navigation, filling, and assertions.
 
@@ -121,4 +119,4 @@ npx playwright show-report
 | TC6b | Password missing digit        | Inline "must contain at least one digit" error |
 | TC7  | Boundary values (6, 20, 25 chars) | No errors at exact limits; errors just outside them |
 
-
+Test results are automatically generated after each test run and can be viewed through the Playwright HTML report.
