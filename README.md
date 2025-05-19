@@ -1,36 +1,136 @@
-# Registration Form Test Automation
+# Registration Form UI Test Automation Suite
 
-This project contains automated UI tests for a registration form. The tests validate the form's validation rules.
+This repository contains an automated UI test suite for a simple registration form application hosted at https://abc13514.sg-host.com/. The suite is using Playwright and TypeScript.
 
-## Setup
+## Table of Contents
 
-1. Install dependencies:
+- [Project Overview](#project-overview)
+- [Prerequisites](#prerequisites)
+- [Installation & Setup](#installation--setup)
+- [Project Structure](#project-structure)
+- [Running Tests](#running-tests)
+- [Testing Approach](#testing-approach)
+- [UI Test Matrix](#ui-test-matrix)
+- [Debugging & Reporting](#debugging--reporting)
+- [Observations & Suggestions](#observations--suggestions)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Project Overview
+
+Automated end-to-end UI tests for the registration form application. The form includes:
+
+- Email address and Confirm email address
+  - Valid email format
+  - Maximum length: 25 characters
+  - Both entries must match
+- Password
+  - 6–20 characters long
+  - At least one uppercase letter
+  - At least one digit
+- A Confirm button to submit
+
+Client-side validations ensure the user is guided correctly before the form is submitted.
+
+## Prerequisites
+
+- Node.js ≥ 16.x
+- npm or yarn
+- VS Code with:
+  - ESLint
+  - Prettier
+  - Playwright Test for VS Code
+
+## Installation & Setup
+
+Clone the repo
+
+```bash
+git clone https://github.com/ivo225/regform-tests
+cd regform-tests
+```
+
+Install dependencies
+
 ```bash
 npm install
+# or
+yarn install
 ```
 
-2. Run tests:
+Install Playwright browsers
+
+```bash
+npx playwright install
+# or
+yarn playwright install
+```
+
+Verify TypeScript compilation
+
+```bash
+npx tsc --noEmit
+```
+
+## Project Structure
+
+```
+├─ tests/
+│   └─ ui/
+│       ├─ pages/
+│       │   └─ RegistrationPage.ts      # POM for UI interactions
+│       └─ registration.spec.ts         # UI test specs
+├─ .eslintrc.js                         # ESLint rules
+├─ .prettierrc                          # Prettier rules
+├─ package.json
+├─ package-lock.json
+├─ playwright.config.ts                 # Playwright configuration
+├─ tsconfig.json                        # TypeScript settings
+└─ README.md                            # This file
+```
+
+## Running Tests
+
+Run all UI tests:
+
 ```bash
 npm test
+# or
+npx playwright test
 ```
 
-## Test Files Structure
+Show HTML report:
 
-- `tests/ui/RegistrationPage.ts` - UI tests for the registration form
+```bash
+npx playwright show-report
+```
 
-## Test Cases
+## Testing Approach
 
-1. **TC1: Happy path** - Tests the successful completion of the registration form with valid data.
-2. **TC2: Email format invalid** - Tests validation for incorrect email format.
-3. **TC3: Email mismatch** - Tests validation when email and confirmation email don't match.
-4. **TC4: Email too long** - Tests validation when email exceeds 25 characters.
-5. **TC5: Password too short** - Tests validation when password is less than 6 characters.
-6. **TC6: Password missing uppercase/digit** - Tests validation when password lacks an uppercase letter.
+- Playwright + TypeScript: unified framework for UI automation, with type safety.
+- Page Object Model (POM): encapsulate selectors and actions in RegistrationPage.ts.
+- Data-driven & boundary checks: isolate each validation rule and its edge cases.
+- Reusability: common helpers for navigation, filling, and assertions.
 
-## Configuration
+## UI Test Matrix
 
-- `playwright.config.ts` - Configuration for the tests
+| ID   | Scenario                      | Expected Behavior                              |
+|------|-------------------------------|------------------------------------------------|
+| TC1  | Happy path                    | Success message displayed                      |
+| TC2  | Invalid email format          | Inline error, button disabled                  |
+| TC3  | Email mismatch                | Inline "Emails do not match" error             |
+| TC4  | Email length > 25             | Inline "must not exceed 25 characters" error   |
+| TC5  | Password length < 6           | Inline "6–20 characters" error                 |
+| TC6a | Password missing uppercase    | Inline "must contain at least one uppercase" error |
+| TC6b | Password missing digit        | Inline "must contain at least one digit" error |
+| TC7  | Boundary values (6, 20, 25 chars) | No errors at exact limits; errors just outside them |
 
-## Screenshots
+## Debugging & Reporting
 
-Test screenshots are saved to the `test-results` directory during test execution.
+- Screenshots on failure (only-on-failure) and at key steps.
+- Traces on retry (on-first-retry) to replay browser events.
+- HTML reports: located under playwright-report/ for a visual dashboard.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
